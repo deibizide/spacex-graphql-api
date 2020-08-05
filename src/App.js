@@ -1,8 +1,7 @@
 import React from 'react';
-import './styles/App.css';
 
 //Components
-import Rockets from './components/Rockets';
+import NavBar from './components/navBar/NavBar';
 
 // 1
 import { ApolloProvider } from 'react-apollo';
@@ -22,9 +21,11 @@ const client = new ApolloClient({
 });
 
 const App = () => (
-    <ApolloProvider client={client}>
-        <Rockets />
-    </ApolloProvider>
+    <div id="app">
+        <ApolloProvider client={client}>
+            <NavBar />
+        </ApolloProvider>
+    </div>
 );
 
 export default App;

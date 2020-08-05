@@ -1,14 +1,17 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-// import Rocket from './Rocket';
+import '../styles/index.scss';
 
 const Rockets = () => (
     <Query
         query={gql`
             {
-                capsules {
+                rockets {
                     id
+                    name
+                    description
+                    cost_per_launch
                 }
             }
         `}
@@ -16,11 +19,7 @@ const Rockets = () => (
         {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>There is an erro {error} </p>;
-            return data.capsules.map(elem => (
-                <div key={elem.id}>
-                    <p>{elem.id}</p>
-                </div>
-            ));
+            return data.rockets.map(rocket => <div key={rocket.id}></div>);
         }}
     </Query>
 );
