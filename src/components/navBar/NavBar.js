@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 // component
 import SpaceXSvgLogo from '../spaceXSvgLogo/SpaceXSvgLogo';
 // graphql
@@ -7,8 +7,6 @@ import gql from 'graphql-tag';
 // scss
 import './style.scss';
 // font awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const getRocketName = gql`
     {
@@ -18,45 +16,44 @@ const getRocketName = gql`
     }
 `;
 
-const handleSideToggle = () => {
-    console.log('hello');
-};
-
 const NavBar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const toggleMenuOpen = () => {
+        setMenuOpen(!menuOpen);
+    };
     return (
-        <div>
-            <Query query={getRocketName}>
-                {({ loading, error, data }) => {
-                    if (loading) return <p>Loading...</p>;
-                    if (error) return <p>There is an erro {error} </p>;
-                    return (
-                        <div className="">
-                            <div className="row">
-                                <div className="col-9 d-flex justify-content-between">
-                                    <SpaceXSvgLogo />
-                                    <FontAwesomeIcon
-                                        onClick={handleSideToggle}
-                                        icon={faBars}
-                                        size="2x"
-                                        className="m-4 navBar__burger-menu"
-                                    />
-                                </div>
-                                <div className="navBar__container col-3 d-flex flex-column align-items-end">
-                                    {data.rockets.map(rocket => (
-                                        <div key={rocket.name} className="m-4 ">
-                                            <a href={rocket.name.replace(/\s/g, '').toLowerCase()}>
-                                                {rocket.name.toUpperCase()}
-                                            </a>
-                                            <div className="navBar__border"></div>
-                                        </div>
-                                    ))}
+        <Query query={getRocketName}>
+            {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>There is an erro {error} </p>;
+                return (
+                    <Fragment>
+                        <div className="navBar__header d-flex justify-content-between align-items-center mx-5">
+                            <div onClick={toggleMenuOpen}>
+                                <div className="navBar__btn">
+                                    <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
                                 </div>
                             </div>
+                            <SpaceXSvgLogo />
                         </div>
-                    );
-                }}
-            </Query>
-        </div>
+
+                        <div
+                            className={`navBar__container ${
+                                !menuOpen ? 'navBar__animation-right-left' : ''
+                            } d-flex flex-column w-25 `}
+                        >
+                            {data.rockets.map(rocket => (
+                                <div key={rocket.name} className="m-4">
+                                    <a href={rocket.name.replace(/\s/g, '').toLowerCase()}>
+                                        {rocket.name.toUpperCase()}
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </Fragment>
+                );
+            }}
+        </Query>
     );
 };
 

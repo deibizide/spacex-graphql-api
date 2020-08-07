@@ -3,7 +3,7 @@ import React from 'react';
 import './style.scss';
 
 const spaceXLogo = () => (
-    <div className="spaceXLogo__svg w-25 m-4">
+    <div className="spaceXLogo__svg w-25">
         <svg version="1.1" x="0px" y="0px" viewBox="0 0 400 50">
             <title>SpaceX Logo</title>
             <g className="letter_s">
