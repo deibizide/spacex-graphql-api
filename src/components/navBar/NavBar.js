@@ -6,30 +6,27 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 // scss
 import './style.scss';
-// font awesome
 
-const getRocketName = gql`
-    {
-        rockets {
-            name
-        }
-    }
-`;
-
-const NavBar = () => {
+const NavBar = ({ getRocketId }) => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const toggleMenuOpen = () => {
-        setMenuOpen(!menuOpen);
-    };
+
+    const getRocketName = gql`
+        {
+            rockets {
+                name
+                id
+            }
+        }
+    `;
     return (
         <Query query={getRocketName}>
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
-                if (error) return <p>There is an erro {error} </p>;
+                if (error) return <p>There is an error {error} </p>;
                 return (
                     <Fragment>
-                        <div className="navBar__header d-flex justify-content-between align-items-center mx-5">
-                            <div onClick={toggleMenuOpen}>
+                        <div className="d-flex justify-content-between align-items-center mx-4">
+                            <div onClick={() => setMenuOpen(!menuOpen)}>
                                 <div className="navBar__btn">
                                     <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
                                 </div>
@@ -42,11 +39,9 @@ const NavBar = () => {
                                 !menuOpen ? 'navBar__animation-right-left' : ''
                             } d-flex flex-column w-25 `}
                         >
-                            {data.rockets.map(rocket => (
-                                <div key={rocket.name} className="m-4">
-                                    <a href={rocket.name.replace(/\s/g, '').toLowerCase()}>
-                                        {rocket.name.toUpperCase()}
-                                    </a>
+                            {data.rockets.map(rockets => (
+                                <div key={rockets.name} className="m-4">
+                                    <p onClick={() => getRocketId(rockets.id)}>{rockets.name.toUpperCase()}</p>
                                 </div>
                             ))}
                         </div>
@@ -58,30 +53,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-// Rockets query
-// {
-//   rockets(limit: 1) {
-//     name
-//     description
-//     height {
-//       feet
-//       meters
-//     }
-//     diameter {
-//       feet
-//       meters
-//     }
-//     payload_weights {
-//       kg
-//       name
-//     }
-//     cost_per_launch
-//     engines {
-//       type
-//       number
-//       propellant_2
-//       propellant_1
-//     }
-//   }
-// }

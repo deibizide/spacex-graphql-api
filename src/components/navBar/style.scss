@@ -1,8 +1,6 @@
 .navBar__btn {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 50px;
     height: 50px;
     cursor: pointer;
     .navBar__btn-burger {
@@ -32,7 +30,6 @@
     .open {
         transform: translateX(-50px);
         background: transparent;
-        box-shadow: none;
     }
     .open::before {
         transform: rotate(45deg) translate(35px, -35px);
@@ -44,10 +41,9 @@
 .navBar__container {
     transition: all 0.5s ease-in-out;
 
-    a {
+    p {
         color: white;
         font-weight: 900;
-        margin-top: 100px;
     }
     a:hover {
         text-decoration: none;
