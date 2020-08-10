@@ -25,7 +25,7 @@ const NavBar = ({ getRocketId }) => {
                 if (error) return <p>There is an error {error} </p>;
                 return (
                     <Fragment>
-                        <div className="d-flex justify-content-between align-items-center mx-4">
+                        <div className="d-flex justify-content-between align-items-center mx-4 ">
                             <div onClick={() => setMenuOpen(!menuOpen)}>
                                 <div className="navBar__btn">
                                     <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
@@ -37,7 +37,7 @@ const NavBar = ({ getRocketId }) => {
                         <div
                             className={`navBar__container ${
                                 !menuOpen ? 'navBar__animation-right-left' : ''
-                            } d-flex flex-column w-25 `}
+                            } d-flex flex-column w-25 position-absolute`}
                         >
                             {data.rockets.map(rockets => (
                                 <div key={rockets.name} className="m-4">

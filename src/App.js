@@ -27,6 +27,7 @@ const App = () => {
         <div id="app">
             <ApolloProvider client={client}>
                 <NavBar getRocketId={getRocketId} />
+                {/* {rocketId && <Rocket rocketId={rocketId} />} */}
                 <Rocket rocketId={rocketId} />
             </ApolloProvider>
         </div>
