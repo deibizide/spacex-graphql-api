@@ -1,41 +1,43 @@
-.navBar__btn {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    cursor: pointer;
-    .navBar__btn-burger {
-        width: 30px;
-        height: 3px;
-        background: #fff;
-        border-radius: 5px;
-        transition: all 0.5s ease-in-out;
-    }
-    .navBar__btn-burger::before,
-    .navBar__btn-burger::after {
-        content: "";
-        position: absolute;
-        width: 30px;
-        height: 3px;
-        background: #fff;
-        border-radius: 5px;
-        transition: all 0.5s ease-in-out;
-    }
-    .navBar__btn-burger::before {
-        transform: translateY(-10px);
-    }
-    .navBar__btn-burger::after {
-        transform: translateY(10px);
-    }
-    /* ANIMATION */
-    .open {
-        transform: translateX(-50px);
-        background: transparent;
-    }
-    .open::before {
-        transform: rotate(45deg) translate(35px, -35px);
-    }
-    .open::after {
-        transform: rotate(-45deg) translate(35px, 35px);
+.navBar__main-container {
+    .navBar__btn {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        cursor: pointer;
+        .navBar__btn-burger {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            border-radius: 5px;
+            transition: all 0.5s ease-in-out;
+        }
+        .navBar__btn-burger::before,
+        .navBar__btn-burger::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            border-radius: 5px;
+            transition: all 0.5s ease-in-out;
+        }
+        .navBar__btn-burger::before {
+            transform: translateY(-10px);
+        }
+        .navBar__btn-burger::after {
+            transform: translateY(10px);
+        }
+        /* ANIMATION */
+        .open {
+            transform: translateX(-50px);
+            background: transparent;
+        }
+        .open::before {
+            transform: rotate(45deg) translate(35px, -35px);
+        }
+        .open::after {
+            transform: rotate(-45deg) translate(35px, 35px);
+        }
     }
 }
 .navBar__container {

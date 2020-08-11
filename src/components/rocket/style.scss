@@ -1,7 +1,33 @@
 .rocket__container {
-    height: 100vh;
+    height: max-content;
+    font-weight: 600;
+    background-color: black;
+
+    .rocket__text {
+        bottom: 50%;
+        h1 {
+            font: 100px/85px D-DIN-Bold, Arial, Verdana, sans-serif;
+            font-weight: 900;
+        }
+    }
+
     h1 {
-        font-size: 100px;
         font-weight: 900;
+    }
+    span {
+        color: gray;
+    }
+    tr {
+        color: white;
+    }
+    tr:first-child {
+        border-top: hidden;
+    }
+    td:nth-child(odd) {
+        text-align: start;
+    }
+    td {
+        text-align: end;
+        border-bottom: 1px solid rgba(239, 239, 239, 0.5);
     }
 }
