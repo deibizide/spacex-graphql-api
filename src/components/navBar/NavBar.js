@@ -40,6 +40,7 @@ const NavBar = ({ getRocketId }) => {
                             </Col>
 
                             <Col
+                                sm={3}
                                 className={`navBar__container mt-5 ${
                                     !menuOpen ? 'navBar__animation-right-left' : ''
                                 } d-flex flex-column  position-absolute`}

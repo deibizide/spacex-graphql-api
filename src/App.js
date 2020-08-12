@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 //Components
 import NavBar from './components/navBar/NavBar';
+import Home from './components/home/Home';
 import Rocket from './components/rocket/Rocket';
 // Apollo
 import { ApolloProvider } from 'react-apollo';
@@ -27,8 +28,8 @@ const App = () => {
         <div id="app">
             <ApolloProvider client={client}>
                 <NavBar getRocketId={getRocketId} />
+                <Home />
                 {rocketId && <Rocket rocketId={rocketId} />}
-                {/* <Rocket rocketId={rocketId} /> */}
             </ApolloProvider>
         </div>
     );
