@@ -28,9 +28,9 @@ const NavBar = ({ getRocketId }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container fluid className="navBar__main-container position-absolute m-4 ">
+                    <Container fluid className="navBar__main-container m-4 ">
                         <Row>
-                            <Col className="d-flex justify-content-between align-items-center  ">
+                            <Col className="d-flex justify-content-between align-items-center bg-dark  ">
                                 <div onClick={() => setMenuOpen(!menuOpen)}>
                                     <div className="navBar__btn">
                                         <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
