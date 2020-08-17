@@ -1,5 +1,6 @@
 .navBar__main-container {
     z-index: 1;
+    background-color: transparent;
     .navBar__btn {
         display: flex;
         align-items: center;
@@ -43,6 +44,7 @@
 }
 .navBar__container {
     transition: all 0.5s ease-in-out;
+    left: 0px;
 
     p {
         color: white;
@@ -54,5 +56,5 @@
     }
 }
 .navBar__animation-right-left {
-    transform: translateX(-220px);
+    transform: translateX(-320px);
 }

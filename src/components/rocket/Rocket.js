@@ -12,8 +12,8 @@ import Table from 'react-bootstrap/Table';
 // scss
 import './style.scss';
 
-const Rocket = ({ rocketId }) => {
-    // console.log(rocketId);
+const Rocket = ({ match }) => {
+    let rocketId = match.params.id;
     const getRocketDescription = gql`
         query getRocket($rocketId: ID!) {
             rocket(id: $rocketId) {
@@ -41,7 +41,6 @@ const Rocket = ({ rocketId }) => {
 
     return (
         <Query query={getRocketDescription} variables={{ rocketId }}>
-            {/* <Query query={getRocketDescription}> */}
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;
@@ -50,7 +49,7 @@ const Rocket = ({ rocketId }) => {
                     <Container fluid className="rocket__container d-flex align-items-center justify-content-around">
                         <Row className="d-flex justify-content-around">
                             <div className="rocket__header ">
-                                <Image src="../assets/falcon_9.jpeg" fluid alt="Header picture Falcon 9" />
+                                <Image src={`../assets/${rocketId}.jpeg`} fluid alt="Header picture Falcon 9" />
                                 <div className="rocket__text position-relative d-flex flex-column align-items-center">
                                     <h1 className="text-center">{name}</h1>
                                 </div>
@@ -84,9 +83,7 @@ const Rocket = ({ rocketId }) => {
                                 </Table>
                             </Col>
                             <Col sm={2} className="rocket__rocket-description d-flex justify-content-center">
-                                <Image src="../assets/falcon9.png" alt="Falcon 9" />
-                                {/* <Image src="../assets/starship.png" alt="Falcon 9" className="" /> */}
-                                {/* <Image src="../assets/falconHeavy.png" alt="Falcon 9" className="" /> */}
+                                <Image src={`../assets/${rocketId}.png`} alt={rocketId} />
                             </Col>
                         </Row>
                     </Container>

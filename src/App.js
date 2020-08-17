@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //Components
 import NavBar from './components/navBar/NavBar';
-import Home from './components/home/Home';
+import Launches from './components/launches/Launches';
 import Rocket from './components/rocket/Rocket';
 // Apollo
 import { ApolloProvider } from 'react-apollo';
@@ -25,13 +26,17 @@ const App = () => {
     };
 
     return (
-        <div id="app">
-            <ApolloProvider client={client}>
-                <NavBar getRocketId={getRocketId} />
-                <Home />
-                {rocketId && <Rocket rocketId={rocketId} />}
-            </ApolloProvider>
-        </div>
+        <ApolloProvider client={client}>
+            <Router>
+                <div id="app">
+                    <NavBar getRocketId={getRocketId} />
+                    <Switch>
+                        <Route path="/launches" component={Launches} />
+                        <Route path="/rocket/:id" component={Rocket} />
+                    </Switch>
+                </div>
+            </Router>
+        </ApolloProvider>
     );
 };
 

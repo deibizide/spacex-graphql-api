@@ -3,7 +3,6 @@
 :root {
     --black: #272727;
     --white: #ffffff;
-    --light-blue: #90d7cb;
 }
 
 * {
@@ -11,6 +10,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    background-color: var(--black);
 }
 
 *,

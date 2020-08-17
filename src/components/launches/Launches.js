@@ -11,7 +11,7 @@ import Image from 'react-bootstrap/Image';
 // scss
 import './style.scss';
 
-const Home = () => {
+const Launches = () => {
     const getLaunches = gql`
         {
             launchesPast(limit: 6) {
@@ -33,20 +33,23 @@ const Home = () => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container className="home__container ">
+                    <Container className="launches__container ">
+                        <div className="launches__title">
+                            <h1>Launches</h1>
+                        </div>
                         {data.launchesPast.map(launch => (
-                            <a
-                                href={launch.links.article_link}
+                            <Link
+                                to={launch.links.article_link}
                                 key={launch.id}
-                                className={`home__wrapper box-${launch.id}`}
+                                className={`launches__wrapper box-${launch.id}`}
                                 target="_blank"
                                 rel="noopener"
                             >
                                 <Image src={`${launch.links.flickr_images}`} alt={launch.mission_name} />
-                                <div className="home__title">
+                                <div className="launches__picture--title">
                                     <p>{launch.mission_name}</p>
                                 </div>
-                            </a>
+                            </Link>
                         ))}
                     </Container>
                 );
@@ -55,12 +58,4 @@ const Home = () => {
     );
 };
 
-export default Home;
-
-// <div className="item item1">1</div>
-//                 <div className="item item2">2</div>
-//                 <div className="item item3">3</div>
-//                 <div className="item item4">4</div>
-//                 <div className="item item5">5</div>
-//                 <div className="item item6">6</div>
-//                 <div className="item item7">7</div>
+export default Launches;

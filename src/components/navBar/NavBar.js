@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 // component
 import SpaceXSvgLogo from '../spaceXSvgLogo/SpaceXSvgLogo';
 // graphql
@@ -11,8 +12,10 @@ import Col from 'react-bootstrap/Col';
 // scss
 import './style.scss';
 
-const NavBar = ({ getRocketId }) => {
+const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrollPosition, setSrollPosition] = useState(0);
+    const wrapperRef = useRef(null);
 
     const getRocketName = gql`
         {
@@ -22,34 +25,70 @@ const NavBar = ({ getRocketId }) => {
             }
         }
     `;
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setSrollPosition(position);
+        setMenuOpen(false);
+    };
+
+    const handleClickOutside = e => {
+        if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+            setMenuOpen(false);
+        }
+    };
+
+    // Scroll
+    useEffect(() => {
+        if (menuOpen) window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [menuOpen]);
+
+    // Click Outside
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <Query query={getRocketName}>
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container fluid className="navBar__main-container m-4 ">
+                    <Container ref={wrapperRef} fluid className="navBar__main-container m-4 ">
                         <Row>
-                            <Col className="d-flex justify-content-between align-items-center bg-dark  ">
+                            <Col className="d-flex justify-content-between align-items-center">
                                 <div onClick={() => setMenuOpen(!menuOpen)}>
                                     <div className="navBar__btn">
                                         <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
                                     </div>
                                 </div>
+                                {data.rockets.map(rockets => (
+                                    <div key={rockets.name}>
+                                        <Link to={`/rocket/${rockets.id}`} className="m-0">
+                                            {rockets.name.toUpperCase()}
+                                        </Link>
+                                    </div>
+                                ))}
                                 <SpaceXSvgLogo />
                             </Col>
 
                             <Col
-                                sm={3}
+                                sm={2}
                                 className={`navBar__container mt-5 ${
                                     !menuOpen ? 'navBar__animation-right-left' : ''
                                 } d-flex flex-column  position-absolute`}
                             >
-                                {data.rockets.map(rockets => (
-                                    <div key={rockets.name} className="m-4">
-                                        <p onClick={() => getRocketId(rockets.id)}>{rockets.name.toUpperCase()}</p>
-                                    </div>
-                                ))}
+                                <div onClick={() => setMenuOpen(!menuOpen)} className="d-flex flex-column m-4">
+                                    <Link className="my-4" to="/missions">
+                                        MISSIONS
+                                    </Link>
+                                    <Link to="/launches">PAST LAUNCHES</Link>
+                                </div>
                             </Col>
                         </Row>
                     </Container>
