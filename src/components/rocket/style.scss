@@ -1,7 +1,7 @@
 .rocket__container {
     height: max-content;
     font-weight: 600;
-    background-color: black;
+    background-color: var(--black);
 
     .rocket__text {
         bottom: 50%;
@@ -9,7 +9,11 @@
         h1 {
             font: 100px/85px D-DIN-Bold, Arial, Verdana, sans-serif;
             font-weight: 900;
-            background-color: transparent;
+        }
+    }
+    .rocket__header {
+        img {
+            height: 969px;
         }
     }
 

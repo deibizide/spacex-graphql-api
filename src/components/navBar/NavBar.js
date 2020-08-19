@@ -59,38 +59,36 @@ const NavBar = () => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container ref={wrapperRef} fluid className="navBar__main-container m-4 ">
-                        <Row>
-                            <Col className="d-flex justify-content-between align-items-center">
-                                <div onClick={() => setMenuOpen(!menuOpen)}>
-                                    <div className="navBar__btn">
-                                        <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
-                                    </div>
+                    <Container ref={wrapperRef} fluid className="navBar__main-container position-absolute mt-4 ">
+                        <Col className="d-flex justify-content-between align-items-center position-absolute">
+                            <div onClick={() => setMenuOpen(!menuOpen)}>
+                                <div className="navBar__btn">
+                                    <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
                                 </div>
-                                {data.rockets.map(rockets => (
-                                    <div key={rockets.name}>
-                                        <Link to={`/rocket/${rockets.id}`} className="m-0">
-                                            {rockets.name.toUpperCase()}
-                                        </Link>
-                                    </div>
-                                ))}
-                                <SpaceXSvgLogo />
-                            </Col>
-
-                            <Col
-                                sm={2}
-                                className={`navBar__container mt-5 ${
-                                    !menuOpen ? 'navBar__animation-right-left' : ''
-                                } d-flex flex-column  position-absolute`}
-                            >
-                                <div onClick={() => setMenuOpen(!menuOpen)} className="d-flex flex-column m-4">
-                                    <Link className="my-4" to="/missions">
-                                        MISSIONS
+                            </div>
+                            {data.rockets.slice(1).map(rockets => (
+                                <div key={rockets.name} className="navBar__rocket-name">
+                                    <Link to={`/rocket/${rockets.id}`} className=" m-0">
+                                        {rockets.name.toUpperCase()}
                                     </Link>
-                                    <Link to="/launches">PAST LAUNCHES</Link>
                                 </div>
-                            </Col>
-                        </Row>
+                            ))}
+                            <SpaceXSvgLogo />
+                        </Col>
+
+                        <Col
+                            sm={2}
+                            className={`navBar__container d-flex align-items-center justify-content-center ${
+                                !menuOpen ? 'navBar__animation-right-left' : ''
+                            } `}
+                        >
+                            <div onClick={() => setMenuOpen(!menuOpen)} className="d-flex flex-column">
+                                <Link className="my-4" to="/missions">
+                                    MISSIONS
+                                </Link>
+                                <Link to="/launches">PAST LAUNCHES</Link>
+                            </div>
+                        </Col>
                     </Container>
                 );
             }}

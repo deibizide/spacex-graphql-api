@@ -49,9 +49,9 @@ const Rocket = ({ match }) => {
                     <Container fluid className="rocket__container d-flex align-items-center justify-content-around">
                         <Row className="d-flex justify-content-around">
                             <div className="rocket__header ">
-                                <Image src={`../assets/${rocketId}.jpeg`} fluid alt="Header picture Falcon 9" />
+                                <Image src={`../assets/${rocketId}.jpg`} alt="Header picture Falcon 9" />
                                 <div className="rocket__text position-relative d-flex flex-column align-items-center">
-                                    <h1 className="text-center">{name}</h1>
+                                    <h1 className="text-center">{name.toUpperCase()}</h1>
                                 </div>
                             </div>
                             <Col sm={5} className="rocket__desc-container d-flex flex-column justify-content-center">

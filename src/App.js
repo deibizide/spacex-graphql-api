@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //Components
 import NavBar from './components/navBar/NavBar';
 import Launches from './components/launches/Launches';
+import Home from './components/home/Home';
+
 import Rocket from './components/rocket/Rocket';
 // Apollo
 import { ApolloProvider } from 'react-apollo';
@@ -31,8 +33,9 @@ const App = () => {
                 <div id="app">
                     <NavBar getRocketId={getRocketId} />
                     <Switch>
-                        <Route path="/launches" component={Launches} />
-                        <Route path="/rocket/:id" component={Rocket} />
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/launches" component={Launches} />
+                        <Route exact path="/rocket/:id" component={Rocket} />
                     </Switch>
                 </div>
             </Router>

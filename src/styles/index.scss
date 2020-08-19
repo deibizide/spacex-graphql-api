@@ -3,6 +3,7 @@
 :root {
     --black: #272727;
     --white: #ffffff;
+    --grey: rgba(239, 239, 239);
 }
 
 * {
@@ -10,7 +11,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: var(--black);
+    font-size: 16px;
 }
 
 *,
@@ -25,6 +26,23 @@ html {
 
 body {
     letter-spacing: -1px;
+    overflow-x: hidden;
+    a {
+        color: var(--grey);
+    }
+
+    a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: var(--grey);
+        transition: width 0.3s ease-in-out;
+    }
+
+    a:hover::after {
+        width: 100%;
+    }
 }
 
 #app {
