@@ -32,7 +32,7 @@ const NavBar = () => {
     };
 
     const handleClickOutside = e => {
-        if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        if (wrapperRef.current === e.target) {
             setMenuOpen(false);
         }
     };
@@ -61,13 +61,12 @@ const NavBar = () => {
                 return (
                     <Container ref={wrapperRef} fluid className="navBar__main-container position-absolute mt-4 ">
                         <Col className="d-flex justify-content-between align-items-center position-absolute">
-                            <div onClick={() => setMenuOpen(!menuOpen)}>
-                                <div className="navBar__btn">
-                                    <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
-                                </div>
+                            <div onClick={() => setMenuOpen(!menuOpen)} className="navBar__btn">
+                                <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
                             </div>
+
                             {data.rockets.slice(1).map(rockets => (
-                                <div key={rockets.name} className="navBar__rocket-name">
+                                <div key={rockets.name} className="navBar__page-link">
                                     <Link to={`/rocket/${rockets.id}`} className=" m-0">
                                         {rockets.name.toUpperCase()}
                                     </Link>
@@ -82,7 +81,10 @@ const NavBar = () => {
                                 !menuOpen ? 'navBar__animation-right-left' : ''
                             } `}
                         >
-                            <div onClick={() => setMenuOpen(!menuOpen)} className="d-flex flex-column">
+                            <div
+                                onClick={() => setMenuOpen(!menuOpen)}
+                                className="navBar__page-link d-flex flex-column"
+                            >
                                 <Link className="my-4" to="/missions">
                                     MISSIONS
                                 </Link>

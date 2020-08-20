@@ -54,37 +54,42 @@ const Rocket = ({ match }) => {
                                     <h1 className="text-center">{name.toUpperCase()}</h1>
                                 </div>
                             </div>
-                            <Col sm={5} className="rocket__desc-container d-flex flex-column justify-content-center">
-                                <h5>{name.toUpperCase()}</h5>
-                                <h1>OVERVIEW</h1>
-                                <Table>
-                                    <tbody>
-                                        <tr>
-                                            <td>HEIGHT</td>
-                                            <td>
-                                                {height.meters} m / <span>{height.feet} ft</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>DIAMETER</td>
-                                            <td>
-                                                {diameter.meters} m / <span>{height.feet} ft</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>SUCCESS RATE</td>
-                                            <td>{success_rate_pct} %</td>
-                                        </tr>
-                                        <tr>
-                                            <td>COST PER LAUNCH</td>
-                                            <td>{cost_per_launch} USD</td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                            </Col>
-                            <Col sm={2} className="rocket__rocket-description d-flex justify-content-center">
-                                <Image src={`../assets/${rocketId}.png`} alt={rocketId} />
-                            </Col>
+                            <div className="d-flex justify-content-between w-50">
+                                <Col
+                                    sm={5}
+                                    className="rocket__desc-container d-flex flex-column justify-content-center"
+                                >
+                                    <h5>{name.toUpperCase()}</h5>
+                                    <h1>OVERVIEW</h1>
+                                    <Table>
+                                        <tbody>
+                                            <tr>
+                                                <td>HEIGHT</td>
+                                                <td>
+                                                    {height.meters} m / <span>{height.feet} ft</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>DIAMETER</td>
+                                                <td>
+                                                    {diameter.meters} m / <span>{height.feet} ft</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>SUCCESS RATE</td>
+                                                <td>{success_rate_pct} %</td>
+                                            </tr>
+                                            <tr>
+                                                <td>COST PER LAUNCH</td>
+                                                <td>{cost_per_launch} USD</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </Col>
+                                <Col sm={2} className="rocket__rocket-description d-flex justify-content-center">
+                                    <Image src={`../assets/${rocketId}.png`} alt={rocketId} />
+                                </Col>
+                            </div>
                         </Row>
                     </Container>
                 );

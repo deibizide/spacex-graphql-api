@@ -41,26 +41,26 @@
             transform: rotate(-45deg) translate(35px, 35px);
         }
     }
-    .navBar__rocket-name {
-        // font-weight: 900;
-        // text-decoration: none;
-        // a {
-        //     color: var(--grey);
-        //     text-decoration: none;
-        // }
+    .navBar__page-link {
+        font-weight: 900;
+        text-decoration: none;
+        a {
+            color: var(--grey);
+            text-decoration: none;
+        }
 
-        // a::after {
-        //     content: '';
-        //     display: block;
-        //     width: 0;
-        //     height: 2px;
-        //     background: var(--grey);
-        //     transition: width 0.3s ease-in-out;
-        // }
+        a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--grey);
+            transition: width 0.3s ease-in-out;
+        }
 
-        // a:hover::after {
-        //     width: 100%;
-        // }
+        a:hover::after {
+            width: 100%;
+        }
     }
 }
 .navBar__container {

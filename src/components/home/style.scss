@@ -1,4 +1,16 @@
 .home__container {
-    background-color: #000000;
-    height: 969px;
+    .home__company-info {
+        top: 350px;
+        width: 40%;
+        margin-left: 150px;
+
+        h1 {
+            font-weight: 900;
+            font-size: 50px;
+        }
+
+        p {
+            font-size: 40px;
+        }
+    }
 }
