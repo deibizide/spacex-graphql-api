@@ -54,9 +54,9 @@ const Rocket = ({ match }) => {
                                     <h1 className="text-center">{name.toUpperCase()}</h1>
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-between w-50">
+                            <Col sm={6} className="d-flex justify-content-between flex-sm-row flex-column-reverse">
                                 <Col
-                                    sm={5}
+                                    md={6}
                                     className="rocket__desc-container d-flex flex-column justify-content-center"
                                 >
                                     <h5>{name.toUpperCase()}</h5>
@@ -89,7 +89,7 @@ const Rocket = ({ match }) => {
                                 <Col sm={2} className="rocket__rocket-description d-flex justify-content-center">
                                     <Image src={`../assets/${rocketId}.png`} alt={rocketId} />
                                 </Col>
-                            </div>
+                            </Col>
                         </Row>
                     </Container>
                 );

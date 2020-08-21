@@ -27,7 +27,7 @@ const Home = () => {
                 if (error) return <p>There is an error {error} </p>;
                 return (
                     <div className="home__container ">
-                        <Image fluid src={`../assets/homePicture.jpg`} alt="Space X Logo" />
+                        <Image src={`../assets/homePicture.jpg`} alt="Space X Logo" />
                         <div className="home__company-info position-absolute">
                             <h1>{data.company.name.toUpperCase()}</h1>
                             <p>{data.company.summary}</p>

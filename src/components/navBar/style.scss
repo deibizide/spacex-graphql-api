@@ -11,7 +11,7 @@
             background: #fff;
             border-radius: 5px;
             transition: all 0.5s ease-in-out;
-            z-index: 1;
+            z-index: 2;
         }
         .navBar__btn-burger::before,
         .navBar__btn-burger::after {
@@ -66,13 +66,11 @@
 .navBar__container {
     background: var(--black);
     height: 969px;
-    left: -25px;
-    top: -40px;
-    width: 100%;
+    left: -10px;
     transition: all 0.5s ease-in-out;
     font-weight: 900;
     text-decoration: none;
-
+    z-index: 1;
     p {
         color: white;
         font-weight: 900;
