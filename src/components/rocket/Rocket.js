@@ -54,9 +54,14 @@ const Rocket = ({ match }) => {
                                     <h1 className="text-center">{name.toUpperCase()}</h1>
                                 </div>
                             </div>
-                            <Col sm={6} className="d-flex justify-content-between flex-sm-row flex-column-reverse">
+                            <Col
+                                sm={4}
+                                lg={6}
+                                className="d-flex justify-content-between align-items-center flex-md-row flex-column"
+                            >
                                 <Col
                                     md={6}
+                                    sm={12}
                                     className="rocket__desc-container d-flex flex-column justify-content-center"
                                 >
                                     <h5>{name.toUpperCase()}</h5>

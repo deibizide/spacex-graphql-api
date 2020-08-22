@@ -1,5 +1,5 @@
 .rocket__container {
-    height: max-content;
+    // height: max-content;
     font-weight: 600;
     background-color: var(--black);
 
@@ -35,5 +35,15 @@
     td {
         text-align: end;
         border-bottom: 1px solid rgba(239, 239, 239, 0.5);
+    }
+}
+
+@media (max-width: 900px) {
+    .rocket__container {
+        .rocket__text {
+            h1 {
+                font-size: 5rem;
+            }
+        }
     }
 }

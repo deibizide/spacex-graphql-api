@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // component
 import SpaceXSvgLogo from '../spaceXSvgLogo/SpaceXSvgLogo';
 // graphql
@@ -16,6 +16,7 @@ const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrollPosition, setSrollPosition] = useState(0);
     const wrapperRef = useRef(null);
+    const urlChange = useLocation();
 
     const getRocketName = gql`
         {
@@ -36,6 +37,9 @@ const NavBar = () => {
             setMenuOpen(false);
         }
     };
+    // useEffect(() => {
+    //     console.log('the Url is changing');
+    // }, [urlChange]);
 
     // Scroll
     useEffect(() => {
@@ -68,7 +72,11 @@ const NavBar = () => {
 
                                 {data.rockets.slice(1).map(rockets => (
                                     <div key={rockets.name} className="navBar__page-link">
-                                        <Link to={`/rocket/${rockets.id}`} className=" m-0">
+                                        <Link
+                                            onClick={() => setMenuOpen(false)}
+                                            to={`/rocket/${rockets.id}`}
+                                            className=" m-0"
+                                        >
                                             {rockets.name.toUpperCase()}
                                         </Link>
                                     </div>
