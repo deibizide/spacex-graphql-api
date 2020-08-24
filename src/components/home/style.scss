@@ -1,12 +1,10 @@
 .home__container {
-    img {
-        height: 100vh;
-    }
-    .home__company-info {
-        top: 350px;
-        width: 40%;
-        margin-left: 150px;
+    background-image: url('https://www.spacex.com/static/images/backgrounds/dragon_feature.webp');
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
 
+    .home__company-info {
         h1 {
             font-weight: 900;
             font-size: 50px;
@@ -14,6 +12,18 @@
 
         p {
             font-size: 40px;
+        }
+    }
+}
+
+/* ----------- iPhone X ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    .home__container {
+        .home__company-info {
+            p {
+                font-size: 25px;
+            }
         }
     }
 }

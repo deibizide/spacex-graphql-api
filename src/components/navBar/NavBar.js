@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // component
 import SpaceXSvgLogo from '../spaceXSvgLogo/SpaceXSvgLogo';
 // graphql
@@ -16,7 +16,7 @@ const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrollPosition, setSrollPosition] = useState(0);
     const wrapperRef = useRef(null);
-    const urlChange = useLocation();
+    const [windowSize, setWindowSize] = useState({ width: undefined });
 
     const getRocketName = gql`
         {
@@ -26,7 +26,12 @@ const NavBar = () => {
             }
         }
     `;
+    const getScreenSize = () => {
+        setWindowSize({ width: window.innerWidth });
+    };
+
     const handleScroll = () => {
+        // TODO: Check if you can declare the variavle above
         const position = window.pageYOffset;
         setSrollPosition(position);
         setMenuOpen(false);
@@ -37,9 +42,13 @@ const NavBar = () => {
             setMenuOpen(false);
         }
     };
-    // useEffect(() => {
-    //     console.log('the Url is changing');
-    // }, [urlChange]);
+
+    // Viewport
+    useEffect(() => {
+        getScreenSize();
+        window.addEventListener('resize', getScreenSize);
+        return () => window.removeEventListener('resize', getScreenSize);
+    }, []);
 
     // Scroll
     useEffect(() => {
@@ -63,33 +72,29 @@ const NavBar = () => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container ref={wrapperRef} fluid className="navBar__main-container">
+                    <Container ref={wrapperRef} fluid className="navBar__container">
                         <Row>
                             <Col className="d-flex justify-content-between align-items-center position-absolute">
                                 <div onClick={() => setMenuOpen(!menuOpen)} className="navBar__btn">
                                     <div className={`navBar__btn-burger ${menuOpen ? 'open ' : ''}`}></div>
                                 </div>
-
-                                {data.rockets.slice(1).map(rockets => (
-                                    <div key={rockets.name} className="navBar__page-link">
-                                        <Link
-                                            onClick={() => setMenuOpen(false)}
-                                            to={`/rocket/${rockets.id}`}
-                                            className=" m-0"
-                                        >
-                                            {rockets.name.toUpperCase()}
-                                        </Link>
-                                    </div>
-                                ))}
+                                {windowSize.width > 992 &&
+                                    data.rockets.slice(1).map(rockets => (
+                                        <div key={rockets.name} className="navBar__page-link">
+                                            <Link
+                                                onClick={() => setMenuOpen(false)}
+                                                to={`/rocket/${rockets.id}`}
+                                                className=" m-0"
+                                            >
+                                                {rockets.name.toUpperCase()}
+                                            </Link>
+                                        </div>
+                                    ))}
                                 <SpaceXSvgLogo />
                             </Col>
 
-                            <Col
-                                xs={7}
-                                sm={5}
-                                md={4}
-                                lg={2}
-                                className={`navBar__container position-absolute d-flex align-items-center justify-content-center ${
+                            <div
+                                className={`navBar__side-container position-absolute d-flex align-items-center justify-content-center text-center ${
                                     !menuOpen ? 'navBar__animation-right-left' : ''
                                 } `}
                             >
@@ -97,12 +102,18 @@ const NavBar = () => {
                                     onClick={() => setMenuOpen(!menuOpen)}
                                     className="navBar__page-link d-flex flex-column"
                                 >
-                                    <Link className="my-4" to="/missions">
-                                        MISSIONS
-                                    </Link>
+                                    <Link to="/missions">MISSIONS</Link>
                                     <Link to="/launches">PAST LAUNCHES</Link>
+                                    {windowSize.width < 992 &&
+                                        data.rockets.slice(1).map(rockets => (
+                                            <div key={rockets.name} className="navBar__page-link">
+                                                <Link onClick={() => setMenuOpen(false)} to={`/rocket/${rockets.id}`}>
+                                                    {rockets.name.toUpperCase()}
+                                                </Link>
+                                            </div>
+                                        ))}
                                 </div>
-                            </Col>
+                            </div>
                         </Row>
                     </Container>
                 );

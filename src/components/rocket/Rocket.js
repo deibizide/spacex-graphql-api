@@ -11,6 +11,7 @@ import Image from 'react-bootstrap/Image';
 import Table from 'react-bootstrap/Table';
 // scss
 import './style.scss';
+import { Redirect } from 'react-router-dom';
 
 const Rocket = ({ match }) => {
     let rocketId = match.params.id;
@@ -39,6 +40,10 @@ const Rocket = ({ match }) => {
         }
     `;
 
+    // https://www.spacex.com/static/images/backgrounds/starship_feature.webp
+    // https://www.spacex.com/static/images/backgrounds/f9_feature.webp
+    // https://www.spacex.com/static/images/backgrounds/fh_feature.webp
+
     return (
         <Query query={getRocketDescription} variables={{ rocketId }}>
             {({ loading, error, data }) => {
@@ -46,15 +51,22 @@ const Rocket = ({ match }) => {
                 if (error) return <p>There is an error {error} </p>;
                 const { name, description, height, diameter, success_rate_pct, cost_per_launch, engines } = data.rocket;
                 return (
-                    <Container fluid className="rocket__container d-flex align-items-center justify-content-around">
-                        <Row className="d-flex justify-content-around">
+                    <div
+                        className="rocket__container d-flex align-items-center justify-content-around"
+                        style={{
+                            backgroundImage: `url(
+                                'https://www.spacex.com/static/images/backgrounds/starship_feature.webp'
+                            )`,
+                        }}
+                    >
+                        <div className="d-flex justify-content-around">
                             <div className="rocket__header ">
-                                <Image src={`../assets/${rocketId}.jpg`} alt="Header picture Falcon 9" />
-                                <div className="rocket__text position-relative d-flex flex-column align-items-center">
+                                {/* <Image src={`../assets/${rocketId}.jpg`} alt="Header picture Falcon 9" /> */}
+                                {/* <div className="rocket__text position-relative d-flex flex-column align-items-center">
                                     <h1 className="text-center">{name.toUpperCase()}</h1>
-                                </div>
+                                </div> */}
                             </div>
-                            <Col
+                            {/* <Col
                                 sm={4}
                                 lg={6}
                                 className="d-flex justify-content-between align-items-center flex-md-row flex-column"
@@ -94,9 +106,9 @@ const Rocket = ({ match }) => {
                                 <Col sm={2} className="rocket__rocket-description d-flex justify-content-center">
                                     <Image src={`../assets/${rocketId}.png`} alt={rocketId} />
                                 </Col>
-                            </Col>
-                        </Row>
-                    </Container>
+                            </Col> */}
+                        </div>
+                    </div>
                 );
             }}
         </Query>

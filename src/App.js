@@ -34,7 +34,7 @@ const App = () => {
                     <NavBar getRocketId={getRocketId} />
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route exact path="/launches" component={Launches} />
+                        {/* <Route exact path="/launches" component={Launches} />*/}
                         <Route exact path="/rocket/:id" component={Rocket} />
                     </Switch>
                 </div>
