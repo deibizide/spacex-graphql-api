@@ -15,6 +15,12 @@ import { Redirect } from 'react-router-dom';
 
 const Rocket = ({ match }) => {
     let rocketId = match.params.id;
+
+    const rocketUrl = {
+        falconheavy: 'fh',
+        falcon9: 'f9',
+        starship: 'starship',
+    };
     const getRocketDescription = gql`
         query getRocket($rocketId: ID!) {
             rocket(id: $rocketId) {
@@ -40,10 +46,6 @@ const Rocket = ({ match }) => {
         }
     `;
 
-    // https://www.spacex.com/static/images/backgrounds/starship_feature.webp
-    // https://www.spacex.com/static/images/backgrounds/f9_feature.webp
-    // https://www.spacex.com/static/images/backgrounds/fh_feature.webp
-
     return (
         <Query query={getRocketDescription} variables={{ rocketId }}>
             {({ loading, error, data }) => {
@@ -53,20 +55,29 @@ const Rocket = ({ match }) => {
                 return (
                     <div
                         className="rocket__container d-flex align-items-center justify-content-around"
-                        style={{
-                            backgroundImage: `url(
-                                'https://www.spacex.com/static/images/backgrounds/starship_feature.webp'
-                            )`,
-                        }}
+                        // style={{
+                        //     backgroundImage: `url(
+                        //         'https://www.spacex.com/static/images/backgrounds/${rocketUrl[rocketId]}_feature.webp'
+                        //     )`,
+                        //     backgroundSize: 'cover',
+                        //     height: '100vh',
+                        // }}
                     >
-                        <div className="d-flex justify-content-around">
+                        <div className="d-flex flex-column justify-content-around">
                             <div className="rocket__header ">
-                                {/* <Image src={`../assets/${rocketId}.jpg`} alt="Header picture Falcon 9" /> */}
-                                {/* <div className="rocket__text position-relative d-flex flex-column align-items-center">
+                                <Image
+                                    src={`https://www.spacex.com/static/images/backgrounds/${rocketUrl[rocketId]}_feature.webp`}
+                                    alt="Header picture Falcon 9"
+                                    // style={{
+                                    //     backgroundSize: 'cover',
+                                    //     height: '100vh',
+                                    // }}
+                                />
+                                <div className="rocket__text position-relative d-flex flex-column align-items-center">
                                     <h1 className="text-center">{name.toUpperCase()}</h1>
-                                </div> */}
+                                </div>
                             </div>
-                            {/* <Col
+                            <Col
                                 sm={4}
                                 lg={6}
                                 className="d-flex justify-content-between align-items-center flex-md-row flex-column"
@@ -106,7 +117,7 @@ const Rocket = ({ match }) => {
                                 <Col sm={2} className="rocket__rocket-description d-flex justify-content-center">
                                     <Image src={`../assets/${rocketId}.png`} alt={rocketId} />
                                 </Col>
-                            </Col> */}
+                            </Col>
                         </div>
                     </div>
                 );
