@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// component
+//components
 import SpaceXSvgLogo from '../spaceXSvgLogo/SpaceXSvgLogo';
+import Loader from '../loader/Loader';
 // graphql
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -31,7 +33,6 @@ const NavBar = () => {
     };
 
     const handleScroll = () => {
-        // TODO: Check if you can declare the variavle above
         const position = window.pageYOffset;
         setSrollPosition(position);
         setMenuOpen(false);
@@ -56,7 +57,7 @@ const NavBar = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [menuOpen]);
+    }, [handleScroll, menuOpen]);
 
     // Click Outside
     useEffect(() => {
@@ -69,7 +70,7 @@ const NavBar = () => {
     return (
         <Query query={getRocketName}>
             {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
+                if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
                 return (
                     <Container ref={wrapperRef} fluid className="navBar__container">
@@ -102,7 +103,6 @@ const NavBar = () => {
                                     onClick={() => setMenuOpen(!menuOpen)}
                                     className="navBar__page-link d-flex flex-column"
                                 >
-                                    <Link to="/missions">MISSIONS</Link>
                                     <Link to="/launches">PAST LAUNCHES</Link>
                                     {windowSize.width < 992 &&
                                         data.rockets.slice(1).map(rockets => (

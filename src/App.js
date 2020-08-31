@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/navBar/NavBar';
 import Launches from './components/launches/Launches';
 import Home from './components/home/Home';
-
 import Rocket from './components/rocket/Rocket';
+import Loader from './components/loader/Loader';
+
 // Apollo
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -34,7 +35,7 @@ const App = () => {
                     <NavBar getRocketId={getRocketId} />
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        {/* <Route exact path="/launches" component={Launches} />*/}
+                        <Route exact path="/launches" component={Launches} />
                         <Route exact path="/rocket/:id" component={Rocket} />
                     </Switch>
                 </div>

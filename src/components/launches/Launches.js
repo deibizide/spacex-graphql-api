@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+//components
+import Loader from '../loader/Loader';
 // graphql
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -14,7 +15,7 @@ import './style.scss';
 const Launches = () => {
     const getLaunches = gql`
         {
-            launchesPast(limit: 6) {
+            launchesPast(limit: 8) {
                 id
                 mission_name
                 launch_site {
@@ -30,16 +31,16 @@ const Launches = () => {
     return (
         <Query query={getLaunches}>
             {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
+                if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container className="launches__container ">
+                    <Container className="launches__container p-5">
                         <div className="launches__title">
-                            <h1>Launches</h1>
+                            <h1>Past Launches</h1>
                         </div>
                         {data.launchesPast.map(launch => (
                             <Link
-                                to={launch.links.article_link}
+                                to={{ pathname: launch.links.article_link }}
                                 key={launch.id}
                                 className={`launches__wrapper box-${launch.id}`}
                                 target="_blank"
