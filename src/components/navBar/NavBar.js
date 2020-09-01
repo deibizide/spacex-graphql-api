@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 //components
 import SpaceXSvgLogo from '../spaceXSvgLogo/SpaceXSvgLogo';
@@ -19,6 +18,7 @@ const NavBar = () => {
     const [scrollPosition, setSrollPosition] = useState(0);
     const wrapperRef = useRef(null);
     const [windowSize, setWindowSize] = useState({ width: undefined });
+    const position = window.pageYOffset;
 
     const getRocketName = gql`
         {
@@ -32,11 +32,10 @@ const NavBar = () => {
         setWindowSize({ width: window.innerWidth });
     };
 
-    const handleScroll = () => {
-        const position = window.pageYOffset;
+    const handleScroll = useCallback(() => {
         setSrollPosition(position);
         setMenuOpen(false);
-    };
+    }, [position]);
 
     const handleClickOutside = e => {
         if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -57,7 +56,7 @@ const NavBar = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [handleScroll, menuOpen]);
+    }, [menuOpen, handleScroll]);
 
     // Click Outside
     useEffect(() => {

@@ -52,7 +52,6 @@
             height: 1px;
             background: var(--grey);
             transition: width 0.3s ease-in-out;
-            margin-bottom: 15px;
         }
 
         a:hover::after {
@@ -70,7 +69,7 @@
     z-index: 1;
     width: 300px;
     p {
-        color: white;
+        color: var(--white);
         font-weight: 900;
     }
     p:hover {

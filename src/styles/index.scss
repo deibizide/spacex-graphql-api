@@ -4,6 +4,7 @@
     --black: #272727;
     --white: #ffffff;
     --grey: rgba(239, 239, 239);
+    --theme-black: #040301;
 }
 
 * {
@@ -29,7 +30,7 @@ body {
 }
 
 #app {
-    background-color: var(--black);
+    background-color: var(--theme-black);
     min-height: 100vh;
     color: white;
 }

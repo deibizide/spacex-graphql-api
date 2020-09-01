@@ -34,7 +34,7 @@ const Launches = () => {
                 if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
                 return (
-                    <Container className="launches__container p-5">
+                    <div className="launches__container m-5">
                         <div className="launches__title">
                             <h1>Past Launches</h1>
                         </div>
@@ -48,11 +48,12 @@ const Launches = () => {
                             >
                                 <Image src={`${launch.links.flickr_images}`} alt={launch.mission_name} />
                                 <div className="launches__picture--title">
-                                    <p>{launch.mission_name}</p>
+                                    <h6>{launch.mission_name.slice(0, 10)}</h6>
+                                    <p>{launch.launch_site.site_name_long}</p>
                                 </div>
                             </Link>
                         ))}
-                    </Container>
+                    </div>
                 );
             }}
         </Query>

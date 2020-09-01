@@ -1,8 +1,10 @@
 .launches__container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 20%);
     grid-template-rows: 50px 150px 150px;
     grid-gap: 10px;
+    justify-content: center;
+    height: min-content;
 
     .launches__title {
         display: grid;
@@ -13,6 +15,8 @@
 
     .launches__wrapper {
         position: relative;
+        cursor: pointer;
+        color: var(--black);
         img {
             width: 100%;
             height: 100%;
@@ -21,32 +25,50 @@
         }
 
         .launches__picture--title {
-            background-color: var(--white);
             width: 100%;
             position: absolute;
             bottom: 0px;
-            padding: 10px;
             border-radius: 5px;
-        }
-        p {
-            color: var(--black);
-            background-color: var(--white);
-            margin: 0px;
+            font-weight: 900;
+
+            h6 {
+                background-color: rgba(93, 107, 125, 0.9);
+                margin: 0px;
+                padding: 10px;
+                width: max-content;
+                height: 30px;
+                color: var(--white);
+            }
+            p {
+                background-color: rgba(234, 225, 233, 0.9);
+                margin: 0px;
+                padding: 10px;
+            }
         }
     }
 
-    .box-99 {
+    .box-100 {
         grid-column: span 2;
         grid-row: span 2;
     }
-    .box-94 {
-        grid-column: span 3;
+    .box-99 {
+        grid-column: span 2;
+        grid-row: span 4;
     }
+
     .box-98 {
         grid-row: span 3;
     }
 
+    .box-97 {
+        grid-row: span 2;
+    }
+
     .box-96 {
         grid-column: span 2;
+    }
+
+    .box-94 {
+        grid-column: span 3;
     }
 }
