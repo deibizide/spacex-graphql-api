@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 //components
 import Loader from '../loader/Loader';
 import RocketTechInfo from '../rocketTechInfo/RocketTechInfo';
+import EngineTechInfo from '../engineTechInfo/EngineTechInfo';
 
 // graphql
 import { Query } from 'react-apollo';
@@ -48,18 +49,21 @@ const Rocket = ({ match }) => {
             {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
-                const { name } = data.rocket;
+
                 return (
-                    <div className="rocket__container d-flex flex-column align-items-center justify-content-around">
-                        <div className="d-flex flex-column justify-content-around w-100">
-                            <div style={imgStyle} className="rocket__header">
-                                <div className="rocket__text position-absolute d-flex flex-column align-items-center">
-                                    <h1 className="text-center">{name.toUpperCase()}</h1>
+                    <Fragment>
+                        <div className="rocket__container d-flex flex-column align-items-center justify-content-around">
+                            <div className="d-flex flex-column justify-content-around w-100">
+                                <div style={imgStyle} className="rocket__header">
+                                    <div className="rocket__text position-absolute d-flex flex-column align-items-center">
+                                        <h1 className="text-center">{data.rocket.name.toUpperCase()}</h1>
+                                    </div>
                                 </div>
                             </div>
+                            <RocketTechInfo rocketTechData={data.rocket} />
                         </div>
-                        <RocketTechInfo rocketTechData={data.rocket} />
-                    </div>
+                        <EngineTechInfo rocketEngineData={data.rocket.engines} />
+                    </Fragment>
                 );
             }}
         </Query>

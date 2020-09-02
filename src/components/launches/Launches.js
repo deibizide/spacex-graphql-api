@@ -5,8 +5,6 @@ import Loader from '../loader/Loader';
 // graphql
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-// bootstrap
-import Container from 'react-bootstrap/Container';
 // bootstrap - Components
 import Image from 'react-bootstrap/Image';
 // scss
