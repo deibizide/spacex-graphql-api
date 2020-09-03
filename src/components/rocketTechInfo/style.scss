@@ -1,28 +1,22 @@
-.rocket__container {
-    font-weight: 600;
-    background-color: var(--black);
-
-    .rocket__text {
-        width: 100%;
-        bottom: 450px;
-        h1 {
-            font: 100px/85px D-DIN-Bold, Arial, Verdana, sans-serif;
-            font-weight: 900;
-        }
-    }
-
-    h1 {
+.rocketTechInfo__rocket {
+    h1,
+    h5,
+    tbody {
         font-weight: 900;
     }
-    span {
-        color: gray;
-    }
     tr {
-        color: white;
+        color: var(--white);
     }
-    tr:first-child {
+
+    .rocketTechInfo__first-table-row {
         border-top: hidden;
     }
+
+    td {
+        text-align: end;
+        border-bottom: 1px solid rgba(239, 239, 239, 0.5);
+    }
+
     td:nth-child(odd) {
         text-align: start;
     }

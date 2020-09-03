@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 //components
 import Loader from '../loader/Loader';
 import RocketTechInfo from '../rocketTechInfo/RocketTechInfo';
-import EngineTechInfo from '../engineTechInfo/EngineTechInfo';
 
 // graphql
 import { Query } from 'react-apollo';
@@ -32,13 +31,14 @@ const Rocket = ({ match }) => {
                     feet
                     meters
                 }
-                success_rate_pct
+                stages
                 cost_per_launch
                 engines {
                     type
                     number
                     propellant_2
                     propellant_1
+                    thrust_to_weight
                 }
             }
         }
@@ -49,6 +49,7 @@ const Rocket = ({ match }) => {
             {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
+                const { name, height, diameter, stages, cost_per_launch, engines } = data.rocket;
 
                 return (
                     <Fragment>
@@ -60,9 +61,15 @@ const Rocket = ({ match }) => {
                                     </div>
                                 </div>
                             </div>
-                            <RocketTechInfo rocketTechData={data.rocket} />
+                            <RocketTechInfo
+                                name={name}
+                                height={height}
+                                diameter={diameter}
+                                stages={stages}
+                                cost_per_launch={cost_per_launch}
+                            />
                         </div>
-                        <EngineTechInfo rocketEngineData={data.rocket.engines} />
+                        <RocketTechInfo engines={engines} />
                     </Fragment>
                 );
             }}

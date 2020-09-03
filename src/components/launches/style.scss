@@ -1,11 +1,10 @@
 .launches__container {
     display: grid;
     grid-template-columns: repeat(4, 20%);
-    grid-template-rows: 50px 150px 150px;
-    grid-gap: 10px;
+    // grid-template-rows: 50px 150px 150px;
+    grid-gap: 15px;
     justify-content: center;
-    height: min-content;
-
+    height: max-content;
     .launches__title {
         display: grid;
         justify-content: center;
@@ -47,13 +46,18 @@
         }
     }
 
-    .box-100 {
+    .box-101 {
         grid-column: span 2;
         grid-row: span 2;
     }
+
+    .box-100 {
+        grid-column: span 1;
+        grid-row: span 2;
+    }
     .box-99 {
-        grid-column: span 2;
-        grid-row: span 4;
+        // grid-column: span 1;
+        // grid-row: span 1;
     }
 
     .box-98 {
@@ -61,10 +65,13 @@
     }
 
     .box-97 {
-        grid-row: span 2;
+        grid-row: span 4;
     }
 
     .box-96 {
+        grid-column: span 2;
+    }
+    .box-95 {
         grid-column: span 2;
     }
 

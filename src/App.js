@@ -5,7 +5,6 @@ import NavBar from './components/navBar/NavBar';
 import Launches from './components/launches/Launches';
 import Home from './components/home/Home';
 import Rocket from './components/rocket/Rocket';
-import Loader from './components/loader/Loader';
 
 // Apollo
 import { ApolloProvider } from 'react-apollo';
