@@ -19,8 +19,8 @@ const Rocket = ({ match }) => {
         height: '100vh',
     };
 
-    const getRocketDescription = gql`
-        query getRocket($rocketId: ID!) {
+    const GET_ROCKET_DESC = gql`
+        query GET_ROCKET_DESC($rocketId: ID!) {
             rocket(id: $rocketId) {
                 name
                 height {
@@ -45,7 +45,7 @@ const Rocket = ({ match }) => {
     `;
 
     return (
-        <Query query={getRocketDescription} variables={{ rocketId }}>
+        <Query query={GET_ROCKET_DESC} variables={{ rocketId }}>
             {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;

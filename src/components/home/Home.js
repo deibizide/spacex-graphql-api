@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import './style.scss';
 
 const Home = () => {
-    const getCompanyinfo = gql`
+    const GET_COMPANY_INFO = gql`
         {
             company {
                 name
@@ -19,7 +19,7 @@ const Home = () => {
         }
     `;
     return (
-        <Query query={getCompanyinfo}>
+        <Query query={GET_COMPANY_INFO}>
             {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>There is an error {error} </p>;

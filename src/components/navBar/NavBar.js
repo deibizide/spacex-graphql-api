@@ -20,7 +20,7 @@ const NavBar = () => {
     const [windowSize, setWindowSize] = useState({ width: undefined });
     const position = window.pageYOffset;
 
-    const getRocketName = gql`
+    const GET_ROCKET_NAME = gql`
         {
             rockets {
                 name
@@ -67,7 +67,7 @@ const NavBar = () => {
     }, []);
 
     return (
-        <Query query={getRocketName}>
+        <Query query={GET_ROCKET_NAME}>
             {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
@@ -102,7 +102,9 @@ const NavBar = () => {
                                     onClick={() => setMenuOpen(!menuOpen)}
                                     className="navBar__page-link d-flex flex-column"
                                 >
-                                    <Link to="/launches">PAST LAUNCHES</Link>
+                                    <div className="navBar__page-link">
+                                        <Link to="/launches">PAST LAUNCHES</Link>
+                                    </div>
                                     {windowSize.width < 992 &&
                                         data.rockets.slice(1).map(rockets => (
                                             <div key={rockets.name} className="navBar__page-link">

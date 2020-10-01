@@ -11,7 +11,7 @@ import Image from 'react-bootstrap/Image';
 import './style.scss';
 
 const Launches = () => {
-    const getLaunches = gql`
+    const GET_LAUNCHES = gql`
         {
             launchesPast(limit: 8) {
                 id
@@ -27,7 +27,7 @@ const Launches = () => {
         }
     `;
     return (
-        <Query query={getLaunches}>
+        <Query query={GET_LAUNCHES}>
             {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return <p>There is an error {error} </p>;
